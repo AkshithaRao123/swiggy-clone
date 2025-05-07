@@ -12,7 +12,7 @@ const RestaurantCard = (props) => {
     avgRating,
     costForTwo,
     deliveryTime,
-  } = resData?.data;
+  } = resData?.info;
 
   return (
     <div className="res-card">
@@ -34,7 +34,7 @@ const RestaurantCard = (props) => {
           </span>
           <span>{avgRating} stars</span>
         </h4>
-        <h4 className="item-price">₹ {costForTwo / 100} FOR TWO</h4>
+        <h4 className="item-price">{costForTwo}</h4>
         <h4 className="time">
           <span className="icons">
             <FiClock />

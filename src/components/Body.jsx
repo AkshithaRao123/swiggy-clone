@@ -27,10 +27,9 @@ const Body = () => {
     console.log("api data", json_data);
 
     setListOfRestaurants(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    console.log(listOfRestaurants);
+    // console.log(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     setFilteredRestaurant(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
-
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -83,7 +82,7 @@ const Body = () => {
               textDecoration: 'none',
               color: '#000',
             }}
-            key={restaurant.id}
+            key={restaurant.info.id}
             to={'/restaurants/' + restaurant.info.id}
           >
             <RestaurantCard resData={restaurant} />
