@@ -24,11 +24,11 @@ const Body = () => {
     );
 
     const json_data = await data.json();
-    console.log("api data",json_data);
+    console.log("api data", json_data);
 
-    setListOfRestaurants(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants);
+    setListOfRestaurants(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
     console.log(listOfRestaurants);
-    setFilteredRestaurant(json_data?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants);
+    setFilteredRestaurant(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
 
@@ -52,7 +52,7 @@ const Body = () => {
               console.log(searchText);
 
               const filteredRestaurant = listOfRestaurants.filter((res) =>
-                res.data.name.toLowerCase().includes(searchText.toLowerCase())
+                res.info.name.toLowerCase().includes(searchText.toLowerCase())
               );
 
               setFilteredRestaurant(filteredRestaurant);
@@ -65,7 +65,7 @@ const Body = () => {
           className="filter-btn"
           onClick={() => {
             const filteredList = listOfRestaurants.filter(
-              (res) => parseFloat(res.data.avgRating) > 4
+              (res) => parseFloat(res.info.avgRating) > 4
             );
 
             setFilteredRestaurant(filteredList);
@@ -83,8 +83,8 @@ const Body = () => {
               textDecoration: 'none',
               color: '#000',
             }}
-            key={restaurant.data.id}
-            to={'/restaurants/' + restaurant.data.id}
+            key={restaurant.id}
+            to={'/restaurants/' + restaurant.info.id}
           >
             <RestaurantCard resData={restaurant} />
           </Link>
