@@ -10,14 +10,19 @@ const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
 
   const { resId } = useParams();
-  // console.log(resId);
 
   useEffect(() => {
     fetchMenu();
   }, []);
 
   const fetchMenu = async () => {
-    const data = await fetch(MENU_API + resId);
+    const data = await fetch("https://proxy.cors.sh/" + MENU_API + resId,
+      {
+        headers: {
+          'x-cors-api-key': 'temp_4493582dc4066fefcda79a33427d4aeb'
+        }
+      }
+    );
     const json = await data.json();
     console.log(json);
     setResInfo(json.data);
@@ -33,12 +38,10 @@ const RestaurantMenu = () => {
     cloudinaryImageId,
     avgRating,
     deliveryTime,
-  } = resInfo?.cards[0]?.card?.card?.info;
+  } = resInfo?.cards[2]?.card?.card?.info;
 
   const { itemCards } =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
-
-  console.log(itemCards);
+    resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
 
   return (
     <div className="menu">

@@ -27,7 +27,7 @@ const Body = () => {
     console.log("api data", json_data);
 
     setListOfRestaurants(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-    // console.log(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+
     setFilteredRestaurant(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
