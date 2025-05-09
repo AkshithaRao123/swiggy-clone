@@ -91,6 +91,7 @@ const RestaurantMenu = () => {
         <h1>Menu</h1>
         <div className='category'>
           {cards.map((cardRes, i) => (
+            ('itemCards' in cardRes?.card?.card) ?
             <div key={i + 1} className="menu-card">
               <h2>{cardRes?.card?.card?.title}</h2>
               {
@@ -105,6 +106,8 @@ const RestaurantMenu = () => {
                 <div key={i}></div>
               }
             </div>
+            :
+            <div></div>
           ))}
         </div>
       </div>
