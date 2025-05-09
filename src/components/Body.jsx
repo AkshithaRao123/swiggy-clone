@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import RestaurantCard from './RestaurantCard';
 import Shimmer from './Shimmer';
 import { Link } from 'react-router-dom';
+import {RESTAURANTS_API} from '../utils/constants';
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurants] = useState([]);
@@ -15,7 +16,7 @@ const Body = () => {
 
   const fetchData = async () => {
     const data = await fetch(
-      'https://proxy.cors.sh/https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.624480699999999&page_type=DESKTOP_WEB_LISTING',
+      'https://proxy.cors.sh/' + RESTAURANTS_API,
       {
         headers: {
           'x-cors-api-key': 'temp_4493582dc4066fefcda79a33427d4aeb'
@@ -26,9 +27,9 @@ const Body = () => {
     const json_data = await data.json();
     console.log("api data", json_data);
 
-    setListOfRestaurants(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setListOfRestaurants(json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
 
-    setFilteredRestaurant(json_data?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilteredRestaurant(json_data?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
   };
 
   return listOfRestaurants.length === 0 ? (
@@ -75,7 +76,6 @@ const Body = () => {
         </button>
       </div>
       <div className="res-container">
-
         {filteredRestaurant.map((restaurant) => (
           <Link
             style={{

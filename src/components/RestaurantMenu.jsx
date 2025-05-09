@@ -8,7 +8,6 @@ import { AiOutlineStar } from 'react-icons/ai';
 
 const RestaurantMenu = () => {
   const [resInfo, setResInfo] = useState(null);
-
   const { resId } = useParams();
 
   useEffect(() => {
@@ -34,20 +33,22 @@ const RestaurantMenu = () => {
     name,
     cuisines,
     costForTwoMessage,
-    costForTwo,
     cloudinaryImageId,
     avgRating,
     deliveryTime,
   } = resInfo?.cards[2]?.card?.card?.info;
 
-  const { itemCards } =
-    resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards[1]?.card?.card;
+  const cards =
+    resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR?.cards; //[5]?.card?.card;
+
+  console.log("itemcards", cards);
+  console.log("resInfo", resInfo.cards[5].groupedCard.cardGroupMap.REGULAR.cards);
 
   return (
     <div className="menu">
       <header className="menu-header">
         <div className="menu-header-left">
-          <img src={CDN_URL + cloudinaryImageId} alt="Restaurent Info" />
+          <img src={CDN_URL + cloudinaryImageId} alt="Restaurant Info" />
         </div>
         <div className="menu-header-right">
           <div className="top">
@@ -87,25 +88,22 @@ const RestaurantMenu = () => {
       </header>
 
       <div className="menu-main">
-        <h2>Menu</h2>
-        <h3 className="items">{itemCards.length} items</h3>
-        <div className="menu-main-card-container">
-          {itemCards.map((item) => (
-            <div key={item.card.info.id} className="menu-card">
-              <div className="menu-card-left">
-                <h2 className="menu-name">{item.card.info.name}</h2>
-                <h3 className="menu-price">
-                  ₹
-                  {item.card.info.price / 100 ||
-                    item.card.info.defaultPrice / 100}
-                </h3>
-                <h4 className="menu-description">
-                  {item.card.info.description}
-                </h4>
-              </div>
-              <div className="menu-card-right">
-                <img src={CDN_URL + item.card.info.imageId} alt="Menu Info" />
-              </div>
+        <h1>Menu</h1>
+        <div className='category'>
+          {cards.map((cardRes, i) => (
+            <div key={i + 1} className="menu-card">
+              <h2>{cardRes?.card?.card?.title}</h2>
+              {
+                cardRes?.card?.card?.itemCards ?
+                cardRes?.card?.card?.itemCards.map((item) => (
+                  <div key={item?.card?.info?.id} className='menu-item'>
+                    <img src={CDN_URL + item?.card?.info?.imageId} />
+                    {item?.card?.info?.name}
+                  </div>
+                ))
+                :
+                <div key={i}></div>
+              }
             </div>
           ))}
         </div>

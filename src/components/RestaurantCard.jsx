@@ -28,7 +28,7 @@ const RestaurantCard = (props) => {
       <div className="res-card-content">
         <h3>{name}</h3>
         <hr />
-        <em>{cuisines.join(', ')}</em>
+        <span>{cuisines.join(', ')}</span>
         <h4 className="avg-rating">
           <span className="icons">
             <AiOutlineStar />

@@ -5,7 +5,7 @@ const ShimmerMenu = () => {
     <div className="menu shimmer-menu">
       <header className="menu-header shimmer-menu stroke animate">
         <div className="menu-header-left shimmer-menu stroke animate">
-          {/* <img src="" alt="" className="stroke animate" /> */}
+          <img src={null} alt="" className="stroke animate" />
         </div>
         <div className="menu-header-right shimmer-menu stroke animate">
           <div className="top shimmer-menu stroke animate">
